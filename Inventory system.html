@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onyx</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #111;
+            color: #fff;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #444;
+            padding: 8px;
+            text-align: left;
+            background-color: #333;
+            color: #fff;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        th {
+            background-color: #555;
+        }
+
+        tr:nth-child(even) {
+            background-color: #222;
+        }
+
+        form {
+            margin-top: 20px;
+            background-color: #333;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+
+        form input, form textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            background-color: #221f1f;
+            color: #fff;
+            border: 1px solid #444;
+            border-radius: 4px;
+        }
+
+        form button {
+            padding: 8px;
+            background-color: #3c443c;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(75, 175, 80, 0.5);
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Onyx Inventory System </h1>
+    </header>
+
+    <div class="container">
+        <table id="inventoryTable">
+            <thead>
+                <tr>
+                    <th>Serial Number</th>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody id="inventoryTableBody">
+                <!-- Data will be dynamically added here using JavaScript -->
+            </tbody>
+        </table>
+
+        <form id="inventoryForm">
+            <label for="serialNumber">Serial Number:</label>
+            <input type="text" id="serialNumber" name="serialNumber" required>
+
+            <label for="item">Item:</label>
+            <input type="text" id="item" name="item" required>
+
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" required>
+
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="4" required></textarea>
+
+            <button type="button" onclick="addProduct()">Next Item</button>
+        </form>
+    </div>
+
+    <script>
+        function addProduct() {
+            const serialNumber = document.getElementById('serialNumber').value;
+            const item = document.getElementById('item').value;
+            const quantity = document.getElementById('quantity').value;
+            const description = document.getElementById('description').value;
+
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>${serialNumber}</td>
+                <td>${item}</td>
+                <td>${quantity}</td>
+                <td>${description}</td>
+            `;
+
+            document.getElementById('inventoryTableBody').appendChild(newRow);
+
+            // Clear the form fields
+            document.getElementById('serialNumber').value = '';
+            document.getElementById('item').value = '';
+            document.getElementById('quantity').value = '';
+            document.getElementById('description').value = '';
+        }
+    </script>
+
+</body>
+</html>
